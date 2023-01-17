@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: avocado-deployment
+  namespace: avocado
+spec:
+  selector:
+    matchLabels:
+      app: avocado
+  template:
+    metadata:
+      labels:
+        app: avocado
+    spec:
+      containers:
+        - name: avocado
+          image: avocadocontainer.azurecr.io/avocado:latest
+          resources:
+            limits:
+              memory: '128Mi'
+              cpu: '500m'
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: avocado-service
+  namespace: avocado
+spec:
+  selector:
+    app: avocado
+  ports:
+    - port: 3000
+      targetPort: 3000

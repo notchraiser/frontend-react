@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: avocado
-          image: avocadocontainer.azurecr.io/avocado:latest
+          image: avocadocontainer.azurecr.io/avocado
           resources:
             limits:
               memory: '128Mi'
